@@ -1,0 +1,61 @@
+extends ../../layout/default.pug
+include ../../mixins/alert.pug
+block main 
+  
+  h1(class="mb-4") Them moi san pham 
+  +alert-error(5000)
+  form(action=`${prefixAdmin}/products/create`
+  id="form-create-product"
+  method="POST"
+  enctype="multipart/form-data")
+    div(class="form-group")
+      label(for="title") Tieu de
+      input(type="text"
+          name="title"
+          id="title"
+          class="form-control"
+          )
+    div(class="form-group")
+      label(for="desc") Mo ta
+      textarea( class="form-control" 
+      name="description" id="desc" rows=5)
+    div(class="form-group")
+      label(for="price") Gia
+      input(type="number" min=0 class="form-control" 
+      name="price" id="price" value="0" )      
+    div(class="form-group")
+      label(for="discount") % Giam gia
+      input(type="number" min=0 class="form-control" 
+      name="discountPercentage" id="discount"  value="0" )   
+    div(class="form-group")
+      label(for="stock") So luong
+      input(type="number" min=0 class="form-control" 
+      name="stock" id="stock"  value="0" )
+    div(class="form-group upload-img"
+    upload-image)
+      label(for="thumbnail") Anh
+      input(type="file"
+          name="thumbnail"
+          id="thumbnail"
+          class="form-control-file"
+          accept="image/*"
+          upload-image-input)
+      img(src="", alt="",
+      upload-image-preview class="image-preview")
+    div(class="form-group")
+      label(for="position") Vi tri
+      input(type="number" placeholder="Tu dong tang" class="form-control" 
+      name="position" id="position"  min="1")
+    div(class="form-group form-check form-check-inline")
+      input(type="radio" name="status" id="active" 
+      value="active" checked)
+      label(for="ative" class="form-check-label") Hoat dong
+    div(class="form-group form-check form-check-inline")
+      input(type="radio" name="status" id="inactive" 
+      value="inactive" )
+      label(for="ative") Ngung hoat dong
+    div(class="form-group") 
+      button(type="submit"
+      class=" btn btn-primary") Tao moi
+  script(src="/admin/js/products.js") 
+  script(src="/admin/js/script.js") 

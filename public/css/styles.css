@@ -1,0 +1,123 @@
+.navi {
+    display: flex;
+    gap: 20px;
+}
+.navi-item {
+    text-decoration: none;
+    color: black;
+    word-break: normal;
+}
+.logo img {
+    width: 100px;
+}
+.footer {
+    background-color: darkgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.product-item img {
+    width: 100%;
+    height: 40%;
+    object-fit: cover;
+    box-shadow: 1px 1px 2px 1px;
+}
+.product-item {
+    margin-bottom: 40px;
+    display: flex;
+    height: 400px;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid rgb(136, 136, 136);
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px 1px;
+    overflow: hidden;
+}
+.info {
+    padding-left: 10px;
+}
+.name {
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.inner-title {
+    color: green;
+}
+.oldPrice {
+    text-decoration: line-through;
+}
+.discount {
+    background-color: red;
+    width: fit-content;
+    padding: 2px 5px;
+    border-radius: 6px;
+    color: white;
+}
+
+/* Product details page styles */
+.product-details .breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 0.5rem;
+}
+
+.product-details .gallery {
+    border: 1px solid #eee;
+    padding: 12px;
+    border-radius: 8px;
+    background: #fff;
+}
+.product-details .main-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: contain;
+}
+.product-details .thumbs {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+.product-details .thumbs img.thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+.product-details .info .title {
+    margin-bottom: 0.5rem;
+}
+.product-details .meta .badge {
+    font-size: 0.9rem;
+}
+.product-details .price-now {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #e74c3c;
+}
+.product-details .price-old {
+    text-decoration: line-through;
+    color: #999;
+}
+.product-details .description {
+    color: #444;
+}
+.product-details .actions .btn-lg {
+    padding: 0.6rem 1.2rem;
+}
+
+@media (max-width: 767px) {
+    .product-details .thumbs img.thumb {
+        width: 48px;
+        height: 48px;
+    }
+    .product-details .price-now {
+        font-size: 1.3rem;
+    }
+}

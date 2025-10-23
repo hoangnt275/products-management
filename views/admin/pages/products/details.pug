@@ -1,0 +1,33 @@
+extends ../../layout/default.pug
+include ../../mixins/alert.pug
+block main 
+  h1(class="mb-4") Chi tiet san pham 
+  +alert-error(5000)
+  .card
+    .card-header Thong tin san pham
+    .card-body
+      .row
+        .col-sm-3 Tieu de
+        .col-sm-9 #{item.title}
+        .col-sm-3 Mo ta
+        .col-sm-9 #{item.description}
+        .col-sm-3 Gia
+        .col-sm-9 #{item.price}$
+        .col-sm-3 % Giam gia
+        .col-sm-9 #{item.discountPercentage}%
+        .col-sm-3 So luong
+        .col-sm-9 #{item.stock}
+        .col-sm-3 Anh
+        .col-sm-9 
+          img(src=item.thumbnail, alt="", style="max-width:200px")
+        .col-sm-3 Vi tri
+        .col-sm-9 #{item.position}
+        .col-sm-3 Trang thai
+        .col-sm-9 
+          if(item.status=="active")
+            span.badge.badge-success Hoat dong
+          else
+            span.badge.badge-secondary Ngung hoat dong
+  div   
+    a(href=`${prefixAdmin}/products/edit/${item._id}` class="btn btn-primary mt-3") Chinh sua
+  a(href=`${prefixAdmin}/products` class="btn btn-primary mt-3") Quay lai danh sach

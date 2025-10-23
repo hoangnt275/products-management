@@ -1,0 +1,56 @@
+extends ../../layout/default.pug
+
+block main
+  .container.product-details.mt-4
+    // breadcrumbs
+    nav.breadcrumb
+      a.breadcrumb-item(href='/') Trang chu
+      a.breadcrumb-item(href='/products') San pham
+      span.breadcrumb-item.active #{item.title}
+
+    .row.mt-3
+      .col-md-6
+        .gallery
+          // main image
+          .main-image
+            img(src=item.thumbnail alt=item.title)
+          // small placeholder for future gallery
+          if item.images && item.images.length
+            .thumbs
+              each imgUrl in item.images
+                img.thumb(src=imgUrl alt=item.title)
+
+      .col-md-6
+        .info
+          h2.title #{item.title}
+          .meta.mb-2
+            if item.status == 'active'
+              span.badge.badge-success.mb-2 Hoat dong
+            else
+              span.badge.badge-danger.mb-2 Ngung hoat dong
+            span.ml-2.text-muted ID: #{item._id}
+
+          .price.mb-3
+            span.price-now #{item.price}$
+            if item.discountPercentage
+              span.price-old.ml-2 #{(item.price * (1 - item.discountPercentage/100)).toFixed(2)}$
+
+          p.description #{item.description}
+
+          ul.list-unstyled.mt-3
+            li
+              strong So luong: 
+              | #{item.stock}
+            li
+              strong Vi tri: 
+              | #{item.position}
+
+          .actions.mt-4
+            a.btn.btn-primary.btn-lg(href=`/cart/add/${item._id}`) Mua ngay
+            a.btn.btn-outline-secondary.ml-2(href='/products') Tro ve
+
+    // optional full description area
+    .card.mt-4
+      .card-body
+        h5 Nok biet them
+        p #{item.fullDescription || item.description}

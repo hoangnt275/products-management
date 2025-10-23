@@ -1,0 +1,84 @@
+extends ../../layout/default.pug
+include ../../mixins/filter-status.pug
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+include ../../mixins/form-change-multi.pug
+include ../../mixins/alert.pug
+
+block main 
+  +alert-success(5000)
+  h1 Danh sach san pham
+
+  .card.mb-3   
+    .card-header Bo loc va tim kiem 
+    .card-body
+    .row 
+      .col-8
+        +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+        .row 
+          .col-6 
+            +filter-status(filterStatus)
+          .col-6 
+            +search(keyword)
+      .col-4 
+        a(href=`${prefixAdmin}/products/create` class="btn-outline-success btn")  + Them moi
+  .table-container
+    table.table.tablehover.table-sm.compact-rows(checkbox-multi)
+      thead 
+        tr
+          th 
+            input(type="checkbox", name="check-all", value="true")
+          th STT 
+          th Hinh anh 
+          th Tieu de
+          th Gia
+          th Vi tri
+          th Trang thai
+          th Hanh dong 
+      tbody
+        each item, index in products 
+          tr
+            td 
+              input(type="checkbox", name="check-item", value=item._id)
+            td #{index+1}
+            td 
+              img(src=item.thumbnail, alt="")
+            td #{item.title}
+            td #{item.price}$
+            td 
+              input(type="number"
+               name="position"
+               min="1"
+               style="width:60px"
+               value=item.position)
+            td
+              if(item.status=="active")
+                button(class="badge badge-success"
+                id=item.id
+                status=item.status
+                button-change-status)  Hoat dong
+              else 
+                button(class="badge badge-danger"
+                id=item.id
+                status=item.status
+                button-change-status)  Ngung hoat dong
+            td
+              a(class="btn btn-secondary btn-sm"
+              details-button
+              href=`${prefixAdmin}/products/details/${item.id}`) Chi tiet
+              a(class="btn btn-warning btn-sm"
+              edit-button
+              href=`${prefixAdmin}/products/edit/${item.id}`) Sua
+              button(class="btn btn-danger btn-sm"
+              button-delete
+              button-data=item.id) Xoa
+  +pagination(pagination)
+  form(action=""
+   method="POST"
+   id="form-change-status"
+   path="/admin/products/change-status")
+  form(action=""
+   method="POST"
+   id="form-delete-item"
+   path="/admin/products/delete")
+  script(src="/admin/js/products.js" defer) 

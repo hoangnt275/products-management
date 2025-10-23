@@ -1,0 +1,131 @@
+.header {
+    background-color: black;
+    color: white;
+    height: 56px;
+}
+.sider {
+    background-color: rgb(43, 43, 43);
+    position: fixed;
+    left: 0;
+    width: 150px;
+    height: calc(100vh - 56px);
+    top: 56px;
+}
+.sider a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+.sider ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sider li {
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid beige;
+}
+.main {
+    padding: 50px;
+    left: 150px;
+    position: fixed;
+    top: 56px;
+    overflow: auto;
+    max-height: 100%;
+}
+.card {
+    max-width: 90%;
+}
+.badge {
+    text-decoration: none;
+    border-radius: 5px;
+}
+.badge-success {
+    background-color: green;
+}
+.badge-danger {
+    background-color: red;
+}
+table img {
+    width: 150px;
+}
+.table-container {
+    max-height: 500px; /* Giới hạn chiều cao */
+    overflow-y: auto; /* Thanh cuộn dọc */
+    border: 1px solid #ddd; /* (Tùy chọn) cho dễ nhìn */
+    max-width: 90%;
+}
+/*
+  - The previous `tr { max-height: 10px }` is not effective for table row height
+    and can be ignored by browsers. Add a utility class `.compact-rows` which
+    can be applied to a table to make rows visually smaller by reducing
+    padding, font-size/line-height and image sizes inside cells.
+*/
+
+/* Use this on a table element to make rows more compact */
+.compact-rows {
+    font-size: 13px; /* slightly smaller text */
+}
+
+.compact-rows th,
+.compact-rows td {
+    padding: 6px 8px; /* less vertical space */
+    line-height: 1.1;
+    vertical-align: middle;
+}
+
+/* If table contains images, make them smaller in compact mode */
+.compact-rows img {
+    width: 48px;
+    height: auto;
+    display: block;
+}
+
+/* Optional: force a tighter row height by limiting cell height (use sparingly) */
+.compact-rows tr {
+    height: 36px; /* can be adjusted as needed */
+}
+[show-alert] {
+    position: fixed;
+    top: 70px;
+    right: 15px;
+    z-index: 9999;
+}
+[show-alert].alert-hidden {
+    animation-name: alert-hidden;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+@keyframes alert-hidden {
+    from {
+        right: 15px;
+    }
+    to {
+        right: -100%;
+        display: none;
+    }
+}
+[show-alert] [close-alert] {
+    margin-left: 5px;
+    background-color: aliceblue;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+.upload-img {
+    display: flex;
+    flex-direction: column;
+}
+.image-preview {
+    width: 150px;
+    height: auto;
+    border: 1px solid gainsboro;
+}
+.image-preview[src=""] {
+    display: none;
+}
